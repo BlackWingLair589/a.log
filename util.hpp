@@ -164,13 +164,22 @@ T align
 constexpr
 void json_escape(
 	std::string * s
+	, const char c
 ) {
-	for(auto j{s->find('"')}; j != s->npos; j = s->find('"', j+strlen("\\\""))) {
-		s->replace(j, 1, "\\\"");
+	for(auto j{s->find(c)}; j != s->npos; j = s->find(c, j+strlen("\\")+1)) {
+		s->replace(j, 1, std::string{'\\'}+c);
 	}
 }
 
-constexpr std::string json_escape(std::string s) {json_escape(&s); return s;}
+constexpr
+std::string json_escape(
+	std::string s
+) {
+	json_escape(&s, '"');
+	json_escape(&s, '\\');
+
+	return s;
+}
 
 template<typename T> requires requires(T x) {c_str(x);}
 bool file_exists(

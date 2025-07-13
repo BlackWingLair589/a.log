@@ -1,0 +1,216 @@
+:root {
+	--a-color: hsl(109, 29%, 51%);
+	--background-color: #161818;
+	--color: GhostWhite;
+	--context-menu-background-color: #2c3030;
+	--count-color: #849090;
+	--h-id-color: #6e7878;
+	--h-title-color: DarkGray;
+	--h-upload-date-color: GhostWhite;
+	--height: 3rem;
+	--input-selection-background-color: #2c3030;
+	--input-selection-color: GhostWhite;
+	--results-chart-background-blur: 1.75rem;
+	--results-chart-height: 8rem;
+	--timestamp-color: DarkGray;
+}
+
+@font-face {
+	font-family: "Iosevka-Regular";
+	src: url("Iosevka-Regular.woff2") format("woff");
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--color);
+	font-family: Iosevka-Regular,monospace;
+}
+
+img {
+	height: var(--height);
+	object-fit: contain;
+	width: auto;
+}
+
+input {
+	background-color: var(--background-color);
+	border-radius: 0.5rem;
+	border: none;
+	color: var(--color);
+	filter: brightness(150%);
+	font-family: inherit;
+	font-size: calc(var(--height)/2.5);
+	height: var(--height);
+	outline: none;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	width: 100%;
+}
+
+input:hover {
+	filter: brightness(200%);
+}
+
+input::selection {
+	background-color: var(--input-selection-background-color);
+	color: var(--input-selection-color);
+}
+
+mark {
+	background-color: transparent;
+	color: var(--a-color);
+	filter: brightness(175%);
+}
+
+th {
+	padding-top: 0.5rem; /*adds spacing between results and headers*/
+}
+
+.count {
+	color: var(--count-color);
+	font-style: italic;
+	position: absolute;
+	right: 1rem;
+	text-decoration: none;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.count:hover {
+	filter: brightness(200%);
+}
+
+.timestamp {
+	color: var(--timestamp-color);
+	padding-right: 0.5rem;
+	text-decoration: none;
+}
+
+.timestamp:hover {
+	filter: brightness(200%);
+}
+
+.results-chart-container {
+	display: none;
+	height: var(--results-chart-height);
+	position: relative;
+	width: 100%;
+	margin-bottom: -0.5rem; /*counteracts the first th padding*/
+}
+
+.results-chart-background {
+	background-image:
+		linear-gradient(to right, var(--background-color) 0%, transparent 20%, transparent 80%, var(--background-color) 100%)
+		, linear-gradient(to bottom, var(--background-color) 0%, transparent 5%, transparent 95%, var(--background-color) 100%)
+
+		, linear-gradient(0deg, rgb(22, 24, 24) 0%, rgba(116, 194, 1, 0.17) 10%, rgb(22, 24, 24) 95%)
+		, linear-gradient(90deg, rgb(57, 7, 128) 20%, rgba(19, 27, 211, 0.25) 50%, rgb(22, 24, 24) 80%)
+		, linear-gradient(90deg, color-mix(in srgb, MediumSlateBlue 50%, transparent) 20%, transparent 30%)
+		, linear-gradient(90deg, transparent 25%, color-mix(in srgb, Crimson 25%, transparent) 50%, transparent 75%)
+		, radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 75%)
+	;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	z-index: -1;
+}
+
+.results-chart {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.results {
+	column-count: 2;
+	width: 100%;
+}
+
+.result-td {
+	max-width: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.result-a {
+	color: var(--a-color);
+	display: flex;
+	justify-content: center;
+	mask-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 1) 1% 99%, transparent);
+	text-decoration: none;
+	white-space: pre;
+}
+
+.result-a:hover {
+	filter: brightness(125%);
+}
+
+.bar {
+}
+
+.bar:hover {
+	filter: brightness(200%);
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.upload-date {
+	color: var(--h-upload-date-color);
+	float: left;
+	position: relative
+}
+
+.uarr {
+	color: var(--h-id-color);
+	float: left;
+	position: relative;
+	text-decoration: none;
+}
+
+.title {
+	color: var(--h-title-color);
+	float: right;
+	position: relative
+}
+
+.id {
+	color: var(--h-id-color);
+	float: right;
+	padding-right: 0.5rem;
+	position: relative;
+}
+
+.uarr:hover {
+	filter: brightness(200%);
+}
+
+.context-image {
+}
+
+.context-image:hover {
+	cursor: pointer;
+	filter: brightness(120%) contrast(120%);
+}
+
+.context-menu {
+	background-color: var(--context-menu-background-color);
+	border-radius: 0.25rem;
+	box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.9);
+	display: none;
+	padding: 0.25rem;
+	position: absolute;
+	z-index: 2147483647;
+}
+
+.context-menu-show {
+	display: block;
+}
+
+.results-pages {
+	background-color: var(--context-menu-background-color);
+	border-radius: 0.25rem;
+	display: none;
+	flex-wrap: wrap;
+	margin-bottom: 0.25rem;
+	padding: 0.25rem;
+	width: fit-content;
+}

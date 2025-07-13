@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base target="_blank"/>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+		<meta charset="UTF-8"/>
+		<script src="index.js" defer></script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>
+					<img id="context-image" class="context-image" onclick="context_menu_toggle(); return false;"/>
+					<table id="context-menu" class="context-menu" onmouseleave="context_menu_hide();"></table>
+				</td>
+				<td style="width:100%;">
+					<form id="search" style="position:relative">
+						<input id="_search" type="search" onfocus="this.select();" autofocus/>
+						<a id="count" class="count" href="#" onclick="store_results(); return false;"></a>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<div id="results-pages" class="results-pages"></div>
+		<div id="results-chart-container" class="results-chart-container">
+			<div id="results-chart-background" class="results-chart-background"></div>
+			<div id="results-chart" class="results-chart"></div>
+		</div>
+		<table id="results" class="results"/>
+	</body>
+</html>

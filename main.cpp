@@ -519,7 +519,7 @@ config.example.json:
 					, ",\"u\":"
 					, std::to_string(i.upload_date)
 					, ",\"t\":\""
-					, i.title
+					, util::json_escape(i.title) // escape()'ing the strings here isn't ideal but this avoids any "unintended consequences" (and doesn't *really* matter).
 					, "\"}"
 				);
 

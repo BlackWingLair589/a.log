@@ -1,9 +1,11 @@
 #pragma once
 
 #include "config.hpp"
+#include "flog.hpp"
 #include "util.hpp"
 
 #include <rapidjson/document.h>
+#include <rapidjson/error/en.h>
 #include <stringzilla/stringzilla.hpp>
 
 #ifdef USE_REGEX
@@ -99,7 +101,19 @@ public:
 		document.ParseInsitu(_archive.data());
 
 		if(!document.IsArray()) [[unlikely]] {
-			return; // TODO: Log error.
+			if(document.HasParseError()) [[likely]] {
+				flog::write(
+					util::format(
+						"Error parsing '%s': %zu: %s"
+						, util::c_str(std::forward<T>(archive))
+						, document.GetErrorOffset()
+						, rapidjson::GetParseError_En(document.GetParseError())
+					)
+					, flog::Level::warning
+				);
+			}
+
+			return;
 		}
 
 		const auto _document{document.GetArray()};
@@ -256,9 +270,13 @@ public:
 
 	constexpr auto begin() {return _sources.begin();}
 	constexpr auto begin() const {return _sources.begin();}
+	constexpr auto rbegin() {return _sources.rbegin();}
+	constexpr auto rbegin() const {return _sources.rbegin();}
 	constexpr bool empty() const {return _sources.empty();}
 	constexpr auto end() {return _sources.end();}
 	constexpr auto end() const {return _sources.end();}
+	constexpr auto rend() {return _sources.rend();}
+	constexpr auto rend() const {return _sources.rend();}
 	template<typename S, typename F> void find(S && substr, F && f) const;
 	void reserve(const std::size_t new_cap) {_sources.reserve(new_cap);}
 	constexpr auto size() const {return _sources.size();}
@@ -464,9 +482,7 @@ void archive::find
 		return; // TODO: Log error.
 	}
 
-	absl::string_view result;
-
-	for(const auto & i: _sources) {
+	for(absl::string_view result; const auto & i: _sources) {
 		absl::string_view text(i.text.data.data(), i.text.data.size());
 
 		while(re2::RE2::FindAndConsume(&text, regex, &result)) {

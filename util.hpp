@@ -175,8 +175,8 @@ constexpr
 std::string json_escape(
 	std::string s
 ) {
-	json_escape(&s, '"');
 	json_escape(&s, '\\');
+	json_escape(&s, '"');
 
 	return s;
 }

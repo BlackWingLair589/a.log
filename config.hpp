@@ -19,6 +19,7 @@ constexpr auto skip{std::array{ // Remove these substrings from the subs cache.
 	, std::string_view{"[Music]"}
 	, std::string_view{"[Laughter]"}
 	, std::string_view{"[ __ ]"}
+	, std::string_view{">>"}
 	, std::string_view{"\""} // We either do this (remove the double quotes completely), or escape them "manually". Removing the quotes is easier (and potentially (but probably not) faster), so we'll do that, because who really gives a shit.
 #if 1 // At some point YouTube started adding punctuation to the subs, which is nice, but it doesn't help us whatsoever.
 	, std::string_view{"."}

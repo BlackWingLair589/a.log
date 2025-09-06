@@ -1,6 +1,6 @@
 # a.log
-
-~~Basically~~a shitpost. Allows you to (relatively) quickly search countless hours of your favorite streamer's YouTube VODs in order to find the most wholesome moments you might want to share with the Internet. Now with advanced raytraced lighting. It's not very efficient, but it gets the job done. Probably.
+![2025-09-07-020654_1920x1080_scrot](https://github.com/user-attachments/assets/a03de5f3-1ed4-44cb-8a7b-955933c7fbf1)
+~~Basically~~A shitpost. Allows you to (relatively) quickly search countless hours of your favorite streamer's YouTube VODs in order to find the most wholesome moments you might want to share with the Internet. Now with advanced ray traced lighting. It's not very efficient, but it gets the job done. Probably.
 
 ## Dependencies
 
@@ -13,7 +13,7 @@
 
 ## Building
 
-(Very optionally) before building, edit config.hpp. The defaults should work fine, unless YouTube raises the limit on VOD length to more than ≈18 hours, then:
+(Very optionally) before building, edit config.hpp (the defaults should work fine, unless YouTube raises the limit on VOD length to more than ≈18 hours), then:
 
 ```bash
 git submodule init && cmake && make install

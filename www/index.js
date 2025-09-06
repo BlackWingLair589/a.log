@@ -193,6 +193,8 @@ function pages_set(
 				for(const i of substr.matchAll(_search_value)) {
 					for(const j of i) {
 						s.add(j);
+
+						break; // FIXME: ??????
 					}
 				}
 
